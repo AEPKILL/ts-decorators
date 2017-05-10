@@ -1,14 +1,14 @@
-import isFunction from 'lodash/isFunction';
-import staticExtend from './staticExtend';
-import createFunctionWithName from './createFunctionWithName';
-import decorateTarget from './decorateTarget';
-import { DECORATE_TARGET } from './decorateTarget';
 /*
  * AOP 装饰器 生成器
  *
  * --- AEPKILL Created on 9:42:04 AM Mon May 08 2017 ---
  * --- a@aepkill.com ---
  */
+import isFunction from 'lodash/isFunction';
+import staticExtend from './staticExtend';
+import createFunctionWithName from './createFunctionWithName';
+import decorateTarget from './decorateTarget';
+import { DECORATE_TARGET } from './decorateTarget';
 
 // tslint:disable-next-line:ban-types
 export function aopGenerator(target: Function, descriptor: PropertyDescriptor, aop: (targetFn: Function, self: any, args: any[]) => void): Function | PropertyDescriptor {

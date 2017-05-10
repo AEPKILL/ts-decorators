@@ -2,6 +2,8 @@ import Before from './before';
 import createFunctionWithName from '../utils/createFunctionWithName';
 import isFunction = require('lodash/isFunction');
 
+// tslint:disable:ban-types
+
 export interface IBindThisOptions {
   include?: Array<string | symbol>;
   exclude?: Array<string | symbol>;
@@ -9,12 +11,13 @@ export interface IBindThisOptions {
 
 export function BindThis({ include, exclude }: IBindThisOptions = {}) {
   // tslint:disable-next-line:ban-types
-  return function bind_this_decorate<T extends Function>(classFn: T) {
+  return function bind_this_decorate<T extends object>(classFn: T | Function) {
     const needBinds: Array<string | symbol> = [];
-    let prototype = classFn.prototype;
+    let prototype = (classFn as Function).prototype;
     while (prototype) {
       const names = getObjectAllFunctionNames(prototype);
       for (const name of names) {
+        // 重载的函数只绑定一次
         if (needBinds.indexOf(name) < 0) {
           if (include && include.indexOf(name) < 0) {
             continue;
@@ -46,3 +49,5 @@ function getObjectAllFunctionNames(obj: any): Array<string | symbol> {
   functions.concat(Object.getOwnPropertySymbols ? Object.getOwnPropertySymbols(obj) : []);
   return functions.filter(key => isFunction(obj[key]));
 }
+
+// tslint:enable:ban-types
