@@ -1,4 +1,4 @@
-# Ts-decorators
+# ts-decorators
 
 * [x] BindThis
 * [x] BindComponentThis
@@ -10,7 +10,7 @@
 
 
 
-# Test
+# test
 
 - [x] BindThis
 - [x] BindComponentThis
