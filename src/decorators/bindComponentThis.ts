@@ -19,8 +19,10 @@ const reactComponentMethods = [
   'getDOMNode'
 ];
 
-export function bindComponentThis(excludes?: Array<string | symbol>) {
+export function BindComponentThis(excludes?: Array<string | symbol>) {
   return BindThis({
     exclude: excludes && excludes.length ? excludes.concat(reactComponentMethods) : reactComponentMethods
   });
 }
+
+export default BindComponentThis;
