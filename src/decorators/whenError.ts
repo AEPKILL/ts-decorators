@@ -1,11 +1,11 @@
+// tslint:disable:ban-types
+
 import aopGenerator from '../utils/aopGenerator';
 import setPrototypeOf from '../utils/setPrototypeOf';
 import decorateTarget from '../utils/decorateTarget';
 import { DECORATE_TARGET } from '../utils/decorateTarget';
 import { isAopReturnNewResult } from './utils/aopResult';
 import isObject = require('lodash/isObject');
-
-// tslint:disable:ban-types
 
 export function WhenError(whenErrorRun: (self: any, error: Error, ...args: any[]) => (void | { result: any })) {
   return function aop_when_error_decorator<T extends object>(target: T | Function, propertyKey?: string | symbol, descriptor?: PropertyDescriptor): T {

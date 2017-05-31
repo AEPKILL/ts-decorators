@@ -1,6 +1,6 @@
 {
   "name": "ts-decorator",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "typescript decorator",
   "repository": {
     "url": "https://github.com/AepKill/ts-decorators",

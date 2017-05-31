@@ -15,7 +15,7 @@ export function After(afterRun: (self: any, result: any, ...args: any[]) => void
     return aopGenerator(target as Function, descriptor!, function aop_before_run(targetFunction: Function, self: any, args: any[]) {
       const result = targetFunction.apply(self, args);
 
-      // 执行警告
+      // warn
       if (warn && isPromise(result)) {
         let targetNameString = '[unknow class: unknow method]';
         if (targetType === DECORATE_TARGET.CLASS) {

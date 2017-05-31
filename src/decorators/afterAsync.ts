@@ -1,11 +1,11 @@
+// tslint:disable:ban-types
+
 import decorateTarget from '../utils/decorateTarget';
 import aopGenerator from '../utils/aopGenerator';
 import { AopResult, isAopReturnNewResult } from './utils/aopResult';
 import isPromise from '../utils/isPromise';
 import { DECORATE_TARGET } from '../utils/decorateTarget';
 import isFunction = require('lodash/isFunction');
-
-// tslint:disable:ban-types
 
 export function AfterAsync(afterAsyncRun: (self: any, result: any, ...args: any[]) => void | AopResult) {
   return function aop_before_decorator<T extends object>(target: T | Function, propertyKey?: string | symbol, descriptor?: PropertyDescriptor): T {
