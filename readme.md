@@ -16,6 +16,6 @@
 - [x] BindComponentThis
 - [x] Before
 - [x] BeforeAsync
-- [ ] After
-- [ ] AfterAsync
+- [x] After
+- [x] AfterAsync
 - [x] WhenError
