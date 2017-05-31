@@ -28,7 +28,7 @@ export function BindThis({ include, exclude }: IBindThisOptions = {}) {
           needBinds.push(name);
         }
       }
-      prototype = Object.getPrototypeOf ? Object.getPrototypeOf(prototype) : (prototype as any).__proto__;
+      prototype = isFunction(Object.getPrototypeOf) ? Object.getPrototypeOf(prototype) : (prototype as any).__proto__;
     }
     return Before((self: any) => {
       for (const methodName of needBinds) {
@@ -45,8 +45,8 @@ export function BindThis({ include, exclude }: IBindThisOptions = {}) {
 export default BindThis;
 
 function getObjectAllFunctionNames(obj: any): Array<string | symbol> {
-  const functions: Array<string | symbol> = Object.getOwnPropertyNames(obj);
-  functions.concat(Object.getOwnPropertySymbols ? Object.getOwnPropertySymbols(obj) : []);
+  let functions: Array<string | symbol> = Object.getOwnPropertyNames(obj);
+  functions = functions.concat(isFunction(Object.getOwnPropertySymbols) ? Object.getOwnPropertySymbols(obj) : []);
   return functions.filter(key => isFunction(obj[key]));
 }
 

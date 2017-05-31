@@ -30,6 +30,7 @@ describe('decorators/beforeAsync', () => {
     })(Test);
     const t = await new Temp();
     expect(t.name).toEqual('aepkill');
+    expect(t instanceof Temp).toEqual(true);
   });
 });
 
