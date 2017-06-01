@@ -14,7 +14,7 @@ import isObject = require('lodash/isObject');
  * @param {(self: any, ...args: any[]) => BeforeResult} beforeRun
  * @returns
  */
-export function Before(beforeRun: (self: any, ...args: any[]) => void | AopResult) {
+export function Before(beforeRun: (self: any, ...args: any[]) => AopResult) {
   return function aop_before_decorator<T extends object>(target: T | Function, propertyKey?: string | symbol, descriptor?: PropertyDescriptor): T {
     const targetType = decorateTarget(target as Function, descriptor);
     return aopGenerator(target as Function, descriptor!, function aop_before_run(targetFunction: Function, self: any, args: any[]) {

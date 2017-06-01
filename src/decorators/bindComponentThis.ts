@@ -19,9 +19,10 @@ const reactComponentMethods = [
   'getDOMNode'
 ];
 
-export function BindComponentThis(excludes?: Array<string | symbol>) {
+export function BindComponentThis(excludes?: Array<string | symbol>, { execConstructor = true }: { execConstructor?: boolean } = {}) {
   return BindThis({
-    exclude: excludes && excludes.length ? excludes.concat(reactComponentMethods) : reactComponentMethods
+    exclude: excludes && excludes.length ? excludes.concat(reactComponentMethods) : reactComponentMethods,
+    execConstructor
   });
 }
 

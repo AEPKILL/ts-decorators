@@ -2,15 +2,17 @@
 
 import Before from './before';
 import createFunctionWithName from '../utils/createFunctionWithName';
+import { IAopNewResult } from './utils/aopResult';
 import isFunction = require('lodash/isFunction');
 
 export interface IBindThisOptions {
   include?: Array<string | symbol>;
   exclude?: Array<string | symbol>;
   trace?: number;
+  execConstructor?: boolean;
 }
 
-export function BindThis({ include, exclude, trace = -1 }: IBindThisOptions = {}) {
+export function BindThis({ include, exclude, trace = -1, execConstructor = true }: IBindThisOptions = {}) {
   return function bind_this_decorator<T extends object>(classFn: T | Function) {
     const needBinds: Array<string | symbol> = [];
     let prototype = (classFn as Function).prototype;
@@ -37,6 +39,18 @@ export function BindThis({ include, exclude, trace = -1 }: IBindThisOptions = {}
           method.apply(self, [].slice.call(arguments));
         });
       }
+      /**
+       * 不执行构造函数 可以把 BindThis 当做一个工具方法来用
+       *
+       * @example
+       * BindThis()(target)(this);
+       */
+      if (!execConstructor) {
+        return {
+          result: null
+        } as IAopNewResult;
+      }
+      return;
     })(classFn);
   };
 }
