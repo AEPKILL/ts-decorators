@@ -7,13 +7,14 @@ import isFunction = require('lodash/isFunction');
 export interface IBindThisOptions {
   include?: Array<string | symbol>;
   exclude?: Array<string | symbol>;
+  trace?: number;
 }
 
-export function BindThis({ include, exclude }: IBindThisOptions = {}) {
+export function BindThis({ include, exclude, trace = -1 }: IBindThisOptions = {}) {
   return function bind_this_decorator<T extends object>(classFn: T | Function) {
     const needBinds: Array<string | symbol> = [];
     let prototype = (classFn as Function).prototype;
-    while (prototype) {
+    while (prototype && trace--) {
       const names = getObjectAllFunctionNames(prototype);
       for (const name of names) {
         // only bind method once
