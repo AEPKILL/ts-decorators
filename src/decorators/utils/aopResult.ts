@@ -11,7 +11,7 @@ export interface IAopNewArgs {
 export type AopResult = undefined | IAopNewResult | IAopNewArgs | void;
 
 export function isAopReturnNewResult(val: AopResult): val is IAopNewResult {
-  return (val as object).hasOwnProperty('result');
+  return !!val && (val as object).hasOwnProperty('result');
 }
 
 export function isAopReturnNewArgs(val: AopResult): val is IAopNewArgs {

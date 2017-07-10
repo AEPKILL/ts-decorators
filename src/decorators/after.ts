@@ -38,13 +38,11 @@ export function After(afterRun: (self: any, result: any, ...args: any[]) => void
 
       const aopResult = afterRun.apply(self, [self, result].concat(args));
 
-      if (aopResult) {
-        if (isAopReturnNewResult(aopResult)) {
-          if (targetType === DECORATE_TARGET.CLASS && aopResult.result && isObject(aopResult.result)) {
-            setPrototypeOf(aopResult.result, targetFunction.prototype);
-          }
-          return aopResult.result;
+      if (isAopReturnNewResult(aopResult)) {
+        if (targetType === DECORATE_TARGET.CLASS && aopResult.result && isObject(aopResult.result)) {
+          setPrototypeOf(aopResult.result, targetFunction.prototype);
         }
+        return aopResult.result;
       }
       return result;
     }) as T;

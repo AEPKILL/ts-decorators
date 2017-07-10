@@ -15,7 +15,7 @@ export function WhenError(whenErrorRun: (self: any, error: Error, ...args: any[]
         return targetFunction.apply(self, args);
       } catch (e) {
         const aopResult = whenErrorRun.apply(self, [self, e].concat(args));
-        if (aopResult && isAopReturnNewResult(aopResult)) {
+        if (isAopReturnNewResult(aopResult)) {
           if (targetType === DECORATE_TARGET.CLASS && aopResult.result && isObject(aopResult.result)) {
             setPrototypeOf(aopResult.result, targetFunction.prototype);
           }
