@@ -11,7 +11,7 @@ import decorateTarget from './decorateTarget';
 import { DECORATE_TARGET } from './decorateTarget';
 
 // tslint:disable-next-line:ban-types
-export function aopGenerator(target: Function, descriptor: PropertyDescriptor, aop: (targetFn: Function, self: any, args: any[]) => void): Function | PropertyDescriptor {
+export function aopGenerator(target: Function, descriptor: PropertyDescriptor, aop: (targetFn: Function, self: any, args: any[]) => any): Function | PropertyDescriptor {
   const targetType = decorateTarget(target, descriptor);
   if (targetType === DECORATE_TARGET.UN_KNOW) {
     throw new Error('can decorate class or function!');
