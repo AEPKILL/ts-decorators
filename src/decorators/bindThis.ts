@@ -58,9 +58,12 @@ export function BindThis({ include, exclude, trace = -1, execConstructor = true 
 export default BindThis;
 
 function getObjectAllFunctionNames(obj: any): Array<string | symbol> {
-  let functions: Array<string | symbol> = Object.getOwnPropertyNames(obj);
-  functions = functions.concat(isFunction(Object.getOwnPropertySymbols) ? Object.getOwnPropertySymbols(obj) : []);
-  return functions.filter(key => isFunction(obj[key]));
+  if (obj) {
+    let functions: Array<string | symbol> = Object.getOwnPropertyNames(obj);
+    functions = functions.concat(isFunction(Object.getOwnPropertySymbols) ? Object.getOwnPropertySymbols(obj) : []);
+    return functions.filter(key => isFunction(obj[key]));
+  }
+  return [];
 }
 
 // tslint:enable:ban-types

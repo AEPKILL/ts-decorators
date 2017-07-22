@@ -15,5 +15,5 @@ export function isAopReturnNewResult(val: AopResult): val is IAopNewResult {
 }
 
 export function isAopReturnNewArgs(val: AopResult): val is IAopNewArgs {
-  return isArray((val as IAopNewArgs).args);
+  return !!val && isArray((val as IAopNewArgs).args);
 }

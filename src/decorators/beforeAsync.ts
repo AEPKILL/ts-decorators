@@ -1,7 +1,7 @@
 import aopGenerator from '../utils/aopGenerator';
 import { decorateTarget, DECORATE_TARGET } from '../utils/decorateTarget';
 import setPrototypeOf from '../utils/setPrototypeOf';
-import { AopResult, isAopReturnNewResult } from './utils/aopResult';
+import { AopResult, isAopReturnNewResult, isAopReturnNewArgs } from './utils/aopResult';
 
 // tslint:disable:ban-types
 
@@ -16,7 +16,7 @@ export function BeforeAsync(beforeRun: (self: any, ...args: any[]) => Promise<vo
             setPrototypeOf(aopResult.result, targetFunction.prototype);
           }
           return aopResult.result;
-        } else if (aopResult.args !== undefined) {
+        } else if (isAopReturnNewArgs(aopResult)) {
           return targetFunction.apply(self, aopResult.args);
         }
       }

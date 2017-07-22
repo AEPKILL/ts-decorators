@@ -2,7 +2,7 @@ import aopGenerator from '../utils/aopGenerator';
 import decorateTarget from '../utils/decorateTarget';
 import { DECORATE_TARGET } from '../utils/decorateTarget';
 import { setPrototypeOf } from '../utils/setPrototypeOf';
-import { AopResult, isAopReturnNewResult } from './utils/aopResult';
+import { AopResult, isAopReturnNewResult, isAopReturnNewArgs } from './utils/aopResult';
 import isObject = require('lodash/isObject');
 
 // tslint:disable:ban-types
@@ -26,7 +26,7 @@ export function Before(beforeRun: (self: any, ...args: any[]) => AopResult) {
             setPrototypeOf(aopResult.result, targetFunction.prototype);
           }
           return aopResult.result;
-        } else if (aopResult.args !== undefined) {
+        } else if (isAopReturnNewArgs(aopResult)) {
           return targetFunction.apply(self, aopResult.args);
         }
       }
