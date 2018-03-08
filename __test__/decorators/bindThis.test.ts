@@ -15,14 +15,14 @@ class Test {
   public test3() {
     return this.name;
   }
+  get myName() {
+    return this.name.toString();
+  }
 }
 
-class Test2 extends Test {
-
-}
+class Test2 extends Test {}
 
 describe('decorators/bindThis', () => {
-
   test('bind this(static extends)', () => {
     const Temp = BindThis()(Test);
     expect(Temp.Fuck).toEqual(Test.Fuck);
@@ -33,6 +33,12 @@ describe('decorators/bindThis', () => {
     const obj = new Temp();
     const testMethod = obj.test;
     expect(testMethod()).toEqual('test');
+  });
+
+  test('bind this getter', () => {
+    const Temp = BindThis()(Test);
+    const obj = new Temp();
+    expect(obj.name).toEqual(obj.myName);
   });
 
   test('bind this(继承)', () => {
@@ -62,7 +68,6 @@ describe('decorators/bindThis', () => {
     expect(testMethod()).toEqual('test');
     expect(test2Method).toThrowError(/undefined/);
   });
-
 });
 
 // tslint:enable:max-classes-per-file

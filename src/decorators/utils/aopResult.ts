@@ -1,4 +1,4 @@
-import isArray = require('lodash/isArray');
+import isArray from 'lodash/isArray';
 
 export interface IAopNewResult {
   result: any;

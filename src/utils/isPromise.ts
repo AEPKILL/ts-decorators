@@ -1,5 +1,5 @@
-import isObject = require('lodash/isObject');
-import isFunction = require('lodash/isFunction');
+import isObject from 'lodash/isObject';
+import isFunction from 'lodash/isFunction';
 
 export function isPromise(val: any): val is Promise<any> {
   if (isObject(val)) {

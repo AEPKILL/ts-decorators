@@ -3,8 +3,6 @@ import { decorateTarget, DECORATE_TARGET } from '../utils/decorateTarget';
 import setPrototypeOf from '../utils/setPrototypeOf';
 import { AopResult, isAopReturnNewResult, isAopReturnNewArgs } from './utils/aopResult';
 
-// tslint:disable:ban-types
-
 export function BeforeAsync(beforeRun: (self: any, ...args: any[]) => Promise<void | AopResult>) {
   return function aop_before_decorator<T extends object>(target: T | Function, propertyKey?: string | symbol, descriptor?: PropertyDescriptor): T {
     const targetType = decorateTarget(target as Function, descriptor);
@@ -26,5 +24,3 @@ export function BeforeAsync(beforeRun: (self: any, ...args: any[]) => Promise<vo
 }
 
 export default BeforeAsync;
-
-// tslint:enable:ban-types

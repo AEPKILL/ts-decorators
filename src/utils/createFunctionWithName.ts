@@ -5,7 +5,6 @@
  * @param {Function} fn
  * @returns {Function}
  */
-// tslint:disable-next-line:ban-types
 export function createFunctionWithName(name: string, fn: Function): Function {
   /**
    * 创建的函数需要指定严格模式，否则当this为null时默认指向window对象

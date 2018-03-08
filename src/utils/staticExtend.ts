@@ -6,8 +6,8 @@
  */
 
 import setPrototypeOf from './setPrototypeOf';
-import isFunction = require('lodash/isFunction');
-import isObject = require('lodash/isObject');
+import isFunction from 'lodash/isFunction';
+import isObject from 'lodash/isObject';
 
 /**
  * 将一个对象放置到另一个对象的原型链上
@@ -21,9 +21,14 @@ import isObject = require('lodash/isObject');
  * @param {P} parent
  * @returns {(C & P)}
  */
-export function staticExtend<C extends object = object, P extends object = object>(obj: C, parent: P): C & P {
+export function staticExtend<
+  C extends object = object,
+  P extends object = object
+>(obj: C, parent: P): C & P {
   if (obj == null || (!isFunction(obj) && !isObject(obj))) {
-    throw new TypeError(`staticExtends called on null or undefined or not a function or not a object`);
+    throw new TypeError(
+      `staticExtends called on null or undefined or not a function or not a object`
+    );
   }
   setPrototypeOf(obj, parent);
   return obj as any;

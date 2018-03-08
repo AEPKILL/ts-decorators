@@ -3,7 +3,6 @@ import Before from '../../src/decorators/before';
 // tslint:disable:max-classes-per-file
 
 describe('decorators/before', () => {
-
   test('参与执行', () => {
     let aepkill = 'aepkill';
     @Before(() => {
@@ -29,7 +28,7 @@ describe('decorators/before', () => {
 
     @Before(() => ({ result: { name: 'aepkill' } }))
     class NoThrowClass extends ThrowClass {
-      public name: string;
+      public name!: string;
       public getName() {
         return this.name;
       }
